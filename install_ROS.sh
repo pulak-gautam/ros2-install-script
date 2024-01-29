@@ -9,6 +9,13 @@ sudo apt upgrade -y
 
 sudo apt install -y ros-humble-ros-base python3-colcon-common-extensions python3-rosdep2
 
+sudo apt-get install -y lsb-release wget gnupg
+sudo wget https://packages.osrfoundation.org/gazebo.gpg -O /usr/share/keyrings/pkgs-osrf-archive-keyring.gpg && \
+    echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/pkgs-osrf-archive-keyring.gpg] http://packages.osrfoundation.org/gazebo/ubuntu-stable $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/gazebo-stable.list > /dev/null && \
+    sudo apt-get update -y && \
+    sudo apt-get install gz-garden -y
+sudo apt-get install ros-humble-ros-gzgarden -y
+
 echo -e "\n## Execute ${BASH_SOURCE[0]} $(date +'%Y/%m/%d %H:%M:%S')"  >> ~/.bashrc
 
 grep "source /opt/ros/humble/setup.bash" ~/.bashrc
